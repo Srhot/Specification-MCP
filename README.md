@@ -1,4 +1,5 @@
 # Specification MCP
+[![smithery badge](https://smithery.ai/badge/@Srhot/specification-mcp)](https://smithery.ai/server/@Srhot/specification-mcp)
 
 A structured documentation system for project knowledge management via Model Context Protocol (MCP).
 
@@ -18,6 +19,15 @@ Specification MCP is an MCP server that helps teams create, manage, and access s
 
 ## Installation
 
+### Installing via Smithery
+
+To install specification-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@Srhot/specification-mcp):
+
+```bash
+npx -y @smithery/cli install @Srhot/specification-mcp --client claude
+```
+
+### Manual Installation
 ```bash
 # Clone the repository
 git clone https://github.com/Srhot/Specification-MCP.git
