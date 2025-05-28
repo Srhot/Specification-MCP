@@ -1,35 +1,27 @@
-# Memory Bank MCP
+# Specification MCP
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/modelcontextprotocol/mcp/main/icon.png" height="128">
-  <h1>Memory Bank MCP</h1>
-  <p>
-    <b>A structured documentation system for project knowledge management via Model Context Protocol (MCP)</b>
-  </p>
-</div>
+A structured documentation system for project knowledge management via Model Context Protocol (MCP).
 
-<a href="https://glama.ai/mcp/servers/@tuncer-byte/memory-bank-MCP">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@tuncer-byte/memory-bank-MCP/badge" alt="Memory Bank MCP server" />
-</a>
+## Overview
 
-Memory Bank is an MCP server that helps teams create, manage, and access structured project documentation. It generates and maintains a set of interconnected Markdown documents that capture different aspects of project knowledge, from high-level goals to technical details and day-to-day progress.
+Specification MCP is an MCP server that helps teams create, manage, and access structured project documentation. It generates and maintains a set of interconnected Markdown documents that capture various aspects of project knowledge — from high-level goals to technical implementation and daily progress.
 
 ## Features
 
-- **AI-Generated Documentation**: Leverages Gemini API to automatically generate comprehensive project documentation
-- **Structured Knowledge System**: Maintains six core document types in a hierarchical structure
-- **MCP Integration**: Implements the Model Context Protocol for seamless integration with AI assistants
-- **Customizable Location**: Specify where you want your Memory Bank directory created
-- **Document Templates**: Pre-defined templates for project brief, product context, system patterns, etc.
-- **AI-Assisted Updates**: Update documents manually or regenerate them with AI assistance
-- **Advanced Querying**: Search across all documents with context-aware relevance ranking
+- **AI-Generated Documentation**: Uses Gemini API to auto-generate comprehensive documentation.
+- **Structured Knowledge System**: Maintains six core document types in a hierarchical structure.
+- **MCP Integration**: Implements Model Context Protocol for seamless AI assistant integration.
+- **Customizable Directory**: Allows users to choose the location for generated files.
+- **Document Templates**: Includes ready-to-use templates (project brief, product context, etc.).
+- **AI-Assisted Updates**: Manually update or regenerate documents with AI help.
+- **Smart Search**: Context-aware search across all documents.
 
 ## Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/tuncer-byte/memory-bank-mcp.git
-cd memory-bank-mcp
+git clone https://github.com/Srhot/Specification-MCP.git
+cd Specification-MCP
 
 # Install dependencies
 npm install
@@ -40,32 +32,28 @@ echo "GEMINI_API_KEY=your_api_key_here" > .env
 
 ## Usage
 
-### Development Mode
+### Development
 
 ```bash
-# Start in development mode
 npm run dev
 ```
 
-### Production Mode
+### Production
 
 ```bash
-# Build the project
 npm run build
-
-# Start in production mode
 npm run start
 ```
 
-### MCP Configuration
+## MCP Integration
 
-To integrate Memory Bank with the Model Context Protocol (MCP), add the following configuration to your `mcp.json` file:
+To integrate Specification MCP with the Model Context Protocol (MCP), add this to your `mcp.json` file:
 
 ```json
 {
   "memoryBank": {
     "command": "node",
-    "args": ["/path/to/memory-bank-mcp/dist/index.js"],
+    "args": ["/path/to/Specification-MCP/dist/index.js"],
     "env": {
       "GEMINI_API_KEY": "your_gemini_api_key_here"
     }
@@ -73,113 +61,56 @@ To integrate Memory Bank with the Model Context Protocol (MCP), add the followin
 }
 ```
 
-Replace `/path/to/memory-bank-mcp/dist/index.js` with the absolute path to your built index.js file, and add your Gemini API key (if applicable).
-
-Example:
-
-```json
-{
-  "memoryBank": {
-    "command": "node",
-    "args": ["/Users/username/memory-bank-mcp/dist/index.js"],
-    "env": {
-      "GEMINI_API_KEY": "AIzaSyXXXXXXXXXXXXXXXXXXXXXXXX"
-    }
-  }
-}
-```
+> Replace `/path/to/Specification-MCP/dist/index.js` with the full path to your built file.
 
 ## MCP Tools
 
-Memory Bank MCP provides the following tools via the Model Context Protocol:
-
 ### `initialize_memory_bank`
 
-Creates a new Memory Bank structure with all document templates.
+Creates a new Memory Bank structure.
 
 **Parameters:**
-- `goal` (string): Project goal description (min 10 characters)
-- `geminiApiKey` (string, optional): Gemini API key for document generation
-- `location` (string, optional): Absolute path where memory-bank folder will be created
 
-**Example:**
-```javascript
-await callTool({
-  name: "initialize_memory_bank",
-  arguments: {
-    goal: "Building a self-documenting AI-powered software development assistant",
-    location: "/Users/username/Documents/projects/ai-assistant"
-  }
-});
-```
+- `goal` (string): Project goal (min 10 characters)
+- `geminiApiKey` (optional): Your API key
+- `location` (optional): Path to create the memory bank
 
 ### `update_document`
 
-Updates a specific document in the Memory Bank.
+Updates a specific document.
 
 **Parameters:**
-- `documentType` (enum): One of: `projectbrief`, `productContext`, `systemPatterns`, `techContext`, `activeContext`, `progress`
-- `content` (string, optional): New content for the document
-- `regenerate` (boolean, default: false): Whether to regenerate the document using AI
 
-**Example:**
-```javascript
-await callTool({
-  name: "update_document",
-  arguments: {
-    documentType: "projectbrief",
-    content: "# Project Brief\n\n## Purpose\nTo develop an advanced and user-friendly AI..."
-  }
-});
-```
+- `documentType`: One of: `projectbrief`, `productContext`, `systemPatterns`, `techContext`, `activeContext`, `progress`
+- `content` (optional): New content
+- `regenerate` (boolean): Use AI to regenerate?
 
 ### `query_memory_bank`
 
-Searches across all documents with context-aware relevance ranking.
+Context-aware search across documents.
 
 **Parameters:**
-- `query` (string): Search query (min 5 characters)
 
-**Example:**
-```javascript
-await callTool({
-  name: "query_memory_bank",
-  arguments: {
-    query: "system architecture components"
-  }
-});
-```
+- `query` (string): Your search query (min 5 characters)
 
 ### `export_memory_bank`
 
-Exports all Memory Bank documents.
+Exports documents to JSON or folder.
 
 **Parameters:**
-- `format` (enum, default: "folder"): Export format, either "json" or "folder"
-- `outputPath` (string, optional): Custom output path for the export
 
-**Example:**
-```javascript
-await callTool({
-  name: "export_memory_bank",
-  arguments: {
-    format: "json",
-    outputPath: "/Users/username/Documents/exports"
-  }
-});
-```
+- `format`: `"json"` or `"folder"`
+- `outputPath` (optional): Export path
 
 ## Document Types
 
-Memory Bank organizes project knowledge into six core document types:
-
-1. **Project Brief** (`projectbrief.md`): Core document defining project objectives, scope, and vision
-2. **Product Context** (`productContext.md`): Documents product functionality from a user perspective
-3. **System Patterns** (`systemPatterns.md`): Establishes system architecture and component relationships
-4. **Tech Context** (`techContext.md`): Specifies technology stack and implementation details
-5. **Active Context** (`activeContext.md`): Tracks current tasks, open issues, and development focus
-6. **Progress** (`progress.md`): Documents completed work, milestones, and project history
+- `projectbrief.md`: Project scope, goals
+- `productContext.md`: User-focused features
+- `systemPatterns.md`: Architecture & components
+- `techContext.md`: Technology stack
+- `activeContext.md`: Current work, open tasks
+- `progress.md`: History, milestones
 
 ## License
 
-MIT 
+MIT
